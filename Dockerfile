@@ -15,4 +15,3 @@ RUN chmod +x /usr/local/bin/xray /entrypoint.sh
 ENV PORT=8080
 EXPOSE 8080
 ENTRYPOINT ["/entrypoint.sh"]
-
