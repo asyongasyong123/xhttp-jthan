@@ -19,8 +19,7 @@
         "clients": [{
           "id": "15f7e8ea-7b56-45d4-93af-31f3c592fdf1",
           "flow": "xtls-rprx-vision",
-          "level": 0,
-          "email": "vless-jonathan"
+          "level": 0
         }],
         "decryption": "none"
       },
