@@ -8,10 +8,7 @@
       "protocol": "trojan",
       "settings": {"clients": [{"password": "newbielangako"}]},
       "sniffing": {"enabled": true, "metadataOnly": false},
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {"path": "/trojan-jonathan?ed=2180"}
-      }
+      "streamSettings": {"network": "ws", "wsSettings": {"path": "/trojan-jonathan?ed=2180"}}
     },
     {
       "tag": "vless-ws",
@@ -28,10 +25,7 @@
         "decryption": "none"
       },
       "sniffing": {"enabled": true, "metadataOnly": false},
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {"path": "/vless-jonathan?ed=2180"}
-      }
+      "streamSettings": {"network": "ws", "wsSettings": {"path": "/vless-jonathan?ed=2180"}}
     }
   ],
   "outbounds": [{"protocol": "freedom", "tag": "direct"}]
