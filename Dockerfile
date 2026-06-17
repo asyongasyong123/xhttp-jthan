@@ -1,12 +1,29 @@
-FROM teddysun/xray:latest AS xray
-FROM openresty/openresty:alpine
 
-COPY --from=xray /usr/bin/xray /usr/local/bin/xray
-RUN chmod +x /usr/local/bin/xray
+gcloud builds submit \
+  --tag gcr.io/$PROJECT_ID/$CLOUD_RUN_SERVICE_NAME \
+  . \
+  --quiet &
+spinner $! "Cloud Build running"
 
-COPY config.json /etc/xray.json
-COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+# =========================
+# DEPLOY CLOUD RUN
+# =========================
 
-EXPOSE 8080
+banner "DEPLOYING CLOUD RUN"
 
-CMD ["sh", "-c", "xray run -c /etc/xray.json & sleep 2 && openresty -g 'daemon off;'"]
+gcloud run deploy $CLOUD_RUN_SERVICE_NAME \
+  --image gcr.io/$PROJECT_ID/$CLOUD_RUN_SERVICE_NAME \
+  --platform managed \
+  --region $REGION \
+  --allow-unauthenticated \
+  --port 8080 \
+  --cpu 4 \
+  --memory 4Gi \
+  --concurrency 1000 \
+  --timeout 3600 \
+  --min-instances 1 \
+  --max-instances 4 \
+  --execution-environment gen2 \
+  --cpu-boost \
+  --quiet &
+spinner $! "Deploying Cloud Run"
