@@ -1,4 +1,3 @@
-# Stage 1: Kuhaon ang Xray
 FROM alpine:3.19 AS xray-bin
 RUN apk add --no-cache curl unzip ca-certificates
 WORKDIR /tmp
@@ -8,7 +7,6 @@ RUN curl -fL https://github.com/XTLS/Xray-core/releases/latest/download/Xray-lin
  && mv xray /usr/local/bin/xray \
  && rm -rf /tmp/*
 
-# Stage 2: Base nga OpenResty
 FROM openresty/openresty:alpine
 RUN apk add --no-cache ca-certificates
 
@@ -20,4 +18,4 @@ COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
 EXPOSE 8080
 
-CMD ["/bin/sh", "-c", "set -e; xray run -c /etc/xray.json & sleep 3; openresty -g 'daemon off;'"]
+CMD ["/bin/sh", "-c", "set -e; xray run -c /etc/xray.json & sleep 5; openresty -g 'daemon off;'"]
