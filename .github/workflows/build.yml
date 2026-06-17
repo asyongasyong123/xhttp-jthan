@@ -1,14 +1,17 @@
-name: Build & Push
+name: Build & Push Docker Image
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Login to Docker Hub
@@ -17,10 +20,10 @@ jobs:
           username: ${{ secrets.DOCKER_USER1 }}
           password: ${{ secrets.DOCKER_TOKEN1 }}
 
-      - name: Build and push
+      - name: Build and push image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: pantasyongbayan/trojan:latest
+          tags: docker.io/pantasyongbayan/trojan:latest
           platforms: linux/amd64
