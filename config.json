@@ -1,13 +1,30 @@
 {
-  "log": {"loglevel": "warn"},
+  "log": {
+    "loglevel": "warn"
+  },
   "inbounds": [
     {
       "port": 10000,
       "listen": "127.0.0.1",
       "protocol": "trojan",
-      "settings": {"clients": [{"password": "teamfreenet"}]},
-      "streamSettings": {"network": "ws", "wsSettings": {"path": "/tr-tmfreenet"}}
+      "settings": {
+        "clients": [
+          {
+            "password": "teamfreenet"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/tr-tmfreenet"
+        }
+      }
     }
   ],
-  "outbounds": [{"protocol": "freedom"}]
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
 }
